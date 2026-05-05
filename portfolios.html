@@ -1,0 +1,165 @@
+<div class="page-card">
+    <style>
+      .section-head h2 {
+        color: #800000;
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+      }
+  
+      .section-head p {
+        color: #7b5d5d;
+        margin-bottom: 20px;
+      }
+  
+      .filter-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+  
+      .filter-btn {
+        border: 1px solid #efd5d5;
+        background: #fff6f6;
+        color: #800000;
+        padding: 10px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+  
+      .filter-btn.active-filter {
+        background: #800000;
+        color: white;
+        border-color: #aa1212;
+      }
+  
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+  
+      .portfolio-card {
+        background: #fff9f9;
+        border: 1px solid #efdfdf;
+        border-radius: 18px;
+        overflow: hidden;
+        transition: 0.25s;
+      }
+  
+      .portfolio-thumb {
+        height: 170px;
+        background: linear-gradient(135deg, #800000, #d07c7c);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+  
+      .portfolio-body {
+        padding: 18px;
+      }
+  
+      .portfolio-body h3 {
+        color: #800000;
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+      }
+  
+      .portfolio-body p {
+        color: #5a3a3a;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+  
+      .portfolio-tag {
+        display: inline-block;
+        background: #fff1f1;
+        color: #800000;
+        border: 1px solid #f0d4d4;
+        border-radius: 999px;
+        padding: 7px 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+  
+      @media (max-width: 900px) {
+        .portfolio-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+  
+      @media (max-width: 768px) {
+        .section-head h2,
+        .section-head p {
+          text-align: center;
+        }
+  
+        .filter-wrap {
+          justify-content: center;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .section-head h2 {
+          font-size: 1.35rem;
+        }
+  
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+  
+        .portfolio-card {
+          border-radius: 16px;
+        }
+  
+        .portfolio-thumb {
+          height: 150px;
+        }
+      }
+    </style>
+  
+    <div class="section-head">
+      <h2>Portfolios</h2>
+      <p>Kumpulan proyek dan karya yang menunjukkan kemampuan saya dalam web development dan desain.</p>
+    </div>
+  
+    <div class="filter-wrap">
+      <button class="filter-btn active-filter" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="design">Design</button>
+      <button class="filter-btn" data-filter="uiux">UI/UX</button>
+    </div>
+  
+      <div class="portfolio-card progress-card filter-item" data-category="design">
+        <div class="portfolio-thumb">Poster</div>
+        <div class="portfolio-body">
+          <h3>Desain Poster Digital</h3>
+          <p>Membuat desain visual untuk kebutuhan promosi, informasi, dan konten media sosial.</p>
+          <span class="portfolio-tag">Design</span>
+        </div>
+      </div>
+  
+      <div class="portfolio-card progress-card filter-item" data-category="design">
+        <div class="portfolio-thumb">Branding</div>
+        <div class="portfolio-body">
+          <h3>Konten Visual Branding</h3>
+          <p>Pembuatan elemen branding sederhana seperti feed post, banner, dan ilustrasi visual.</p>
+          <span class="portfolio-tag">Design</span>
+        </div>
+      </div>
+  
+      <div class="portfolio-card progress-card filter-item" data-category="uiux">
+        <div class="portfolio-thumb">Dashboard</div>
+        <div class="portfolio-body">
+          <h3>Dashboard Concept</h3>
+          <p>Desain dashboard yang ringkas, mudah dipahami, dan rapi di desktop maupun mobile.</p>
+          <span class="portfolio-tag">UI/UX</span>
+        </div>
+      </div>
+    </div>
+  </div>

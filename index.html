@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV SPA Complete</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#800000" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="CV Indira" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #b60303;
+      --primary-dark: #740000;
+      --soft-bg: #f7efef;
+      --card: #ffffff;
+      --line: #ecd7d7;
+      --text: #2f1a1a;
+      --text-soft: #7b5d5d;
+      --shadow: 0 10px 30px rgba(128, 0, 0, 0.08);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #fbf7f7, #f4ebeb);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 28px 0 22px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 22px;
+      padding: 22px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-card h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .hero-card p {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 0;
+    }
+
+    .menu {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--primary);
+      background: #fff7f7;
+      border: 1px solid #edd4d4;
+      border-radius: 999px;
+      padding: 12px 18px;
+      min-height: 46px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: 0.25s ease;
+      text-align: center;
+    }
+
+    .menu:hover {
+      background: #ffeaea;
+      transform: translateY(-2px);
+    }
+
+    .menu.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 10px 20px rgba(128,0,0,0.18);
+    }
+
+    .menu.active::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -8px;
+    }
+
+    main {
+      padding: 24px 0 32px;
+    }
+
+    #content {
+      min-height: 450px;
+    }
+
+    .page-card {
+      background: var(--card);
+      border: 1px solid #f2e5e5;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .loading {
+      background: var(--card);
+      border: 1px solid #f2e5e5;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 38px 20px;
+      text-align: center;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 16px 12px;
+      font-size: 0.92rem;
+      margin-top: 8px;
+    }
+
+    .click-effect {
+      animation: pulseClick 0.3s ease;
+    }
+
+    @keyframes pulseClick {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.97); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 24px 0 18px;
+      }
+
+      .hero-card {
+        padding: 18px;
+      }
+
+      .hero-card h1 {
+        font-size: 1.55rem;
+      }
+
+      .hero-card p {
+        font-size: 0.94rem;
+      }
+
+      .page-card,
+      .loading {
+        padding: 22px 18px;
+      }
+
+      .menu {
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+
+      header {
+        padding: 18px 0 14px;
+      }
+
+      .hero-card {
+        padding: 16px 14px;
+        border-radius: 18px;
+      }
+
+      .hero-card h1 {
+        font-size: 1.15rem;
+        margin-bottom: 4px;
+      }
+
+      .hero-card p {
+        font-size: 0.82rem;
+      }
+
+      .nav-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 12px 0;
+      }
+
+      .menu {
+        width: 100%;
+        min-width: unset;
+        min-height: 42px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        font-size: 0.88rem;
+      }
+
+      .menu.active::after {
+        display: none;
+      }
+
+      main {
+        padding: 16px 0 22px;
+      }
+
+      #content {
+        min-height: 320px;
+      }
+
+      .page-card,
+      .loading {
+        padding: 18px 14px;
+        border-radius: 18px;
+      }
+
+      footer {
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="hero-card">
+        <h1>Curriculum Vitae</h1>
+        <p>Indira Jasmine Luay</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="#" class="menu active" data-page="home.html">Home</a>
+        <a href="#" class="menu" data-page="about.html">About</a>
+        <a href="#" class="menu" data-page="skills.html">Skills</a>
+        <a href="#" class="menu" data-page="educations.html">Educations</a>
+        <a href="#" class="menu" data-page="experiences.html">Experiences</a>
+        <a href="#" class="menu" data-page="portfolios.html">Portfolios</a>
+        <a href="#" class="menu" data-page="certificates.html">Certificates</a>
+        <a href="#" class="menu" data-page="contact.html">Contact</a>
+        <a href="#" class="menu" data-page="github.html">GitHub Info</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div id="content">
+        <div class="loading">Memuat halaman...</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 CV Indira Jasmine Luay</p>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      function initGithubPage() {
+        const username = "indijasmine";
+
+        if (!$("#githubLoading").length) return;
+
+        $("#githubLoading").show();
+        $("#githubError").hide();
+        $("#githubContent").hide();
+        $("#repoList").html("");
+
+        $.when(
+          $.ajax({
+            url: "https://api.github.com/users/" + username,
+            method: "GET",
+            dataType: "json"
+          }),
+          $.ajax({
+            url: "https://api.github.com/users/" + username + "/repos?sort=updated&per_page=100",
+            method: "GET",
+            dataType: "json"
+          })
+        )
+        .done(function(userRes, repoRes) {
+          const user = userRes[0];
+          const repos = repoRes[0];
+
+          $("#githubAvatar").attr("src", user.avatar_url);
+          $("#githubUsername").text(user.login || "-");
+          $("#githubName").text(user.name || "-");
+          $("#githubFollowers").text(user.followers || 0);
+          $("#githubFollowing").text(user.following || 0);
+          $("#githubRepoCount").text(user.public_repos || 0);
+          $("#githubProfileLink").attr("href", user.html_url);
+
+          if (!repos.length) {
+            $("#repoList").html('<div class="repo-empty">Repository belum tersedia.</div>');
+          } else {
+            let repoHTML = "";
+            repos.forEach(function(repo) {
+              repoHTML += `
+                <a class="repo-card" href="${repo.html_url}" target="_blank">
+                  <div class="repo-top">
+                    <h4>${repo.name}</h4>
+                    <span>${repo.visibility ? repo.visibility : "public"}</span>
+                  </div>
+                  <p>${repo.description ? repo.description : "Tidak ada deskripsi repository."}</p>
+                  <div class="repo-meta">
+                    <span>⭐ ${repo.stargazers_count}</span>
+                    <span>🍴 ${repo.forks_count}</span>
+                    <span>🛠 ${repo.language ? repo.language : "-"}</span>
+                  </div>
+                </a>
+              `;
+            });
+            $("#repoList").html(repoHTML);
+          }
+
+          $("#githubLoading").hide();
+          $("#githubContent").fadeIn(300);
+        })
+        .fail(function() {
+          $("#githubLoading").hide();
+          $("#githubError").fadeIn(300);
+        });
+      }
+
+      function initProgressivePage(page) {
+        if (page === "github.html") {
+          initGithubPage();
+        }
+
+        $(".progress-card").hover(
+          function () {
+            $(this).stop(true, true).animate({ marginTop: "-4px" }, 150);
+          },
+          function () {
+            $(this).stop(true, true).animate({ marginTop: "0px" }, 150);
+          }
+        );
+
+        $(".toggle-btn").off("click").on("click", function () {
+          $(this).closest(".toggle-card").find(".toggle-content").stop(true, true).slideToggle(250);
+          $(this).toggleClass("opened");
+        });
+
+        $(".filter-btn").off("click").on("click", function () {
+          const filter = $(this).data("filter");
+          $(".filter-btn").removeClass("active-filter");
+          $(this).addClass("active-filter");
+
+          if (filter === "all") {
+            $(".filter-item").fadeIn(200);
+          } else {
+            $(".filter-item").hide();
+            $('.filter-item[data-category="' + filter + '"]').fadeIn(200);
+          }
+        });
+      }
+
+      function loadPage(page) {
+        $("#content").fadeOut(140, function () {
+          $("#content").html('<div class="loading">Memuat halaman...</div>').fadeIn(180);
+
+          $("#content").load(page, function (response, status) {
+            if (status === "error") {
+              $("#content").hide().html(`
+                <div class="page-card">
+                  <h2 style="color:#800000; margin-bottom:10px;">Halaman gagal dimuat</h2>
+                  <p>Pastikan file <strong>${page}</strong> tersedia dalam folder yang sama.</p>
+                </div>
+              `).fadeIn(250);
+            } else {
+              $("#content").hide().slideDown(300);
+              initProgressivePage(page);
+            }
+          });
+        });
+      }
+
+      loadPage("home.html");
+
+      $(".menu").click(function (e) {
+        e.preventDefault();
+
+        const page = $(this).data("page");
+        $(".menu").removeClass("active");
+        $(this).addClass("active");
+
+        $(this).addClass("click-effect");
+        setTimeout(() => {
+          $(this).removeClass("click-effect");
+        }, 300);
+
+        loadPage(page);
+      });
+    });
+  </script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(function (registration) {
+            console.log("Service Worker berhasil didaftarkan:", registration.scope);
+          })
+          .catch(function (error) {
+            console.log("Service Worker gagal didaftarkan:", error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

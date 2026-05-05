@@ -1,0 +1,187 @@
+<div class="page-card home-page">
+    <style>
+      .home-page .section-title {
+        color: #880f0f;
+        font-size: 1.8rem;
+        margin-bottom: 22px;
+        font-weight: 700;
+      }
+  
+      .home-grid {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+        align-items: center;
+      }
+  
+      .profile-card {
+        background: #fff8f8;
+        border: 1px solid #f0dddd;
+        border-radius: 18px;
+        padding: 18px;
+        text-align: center;
+        transition: 0.3s;
+      }
+  
+      .profile-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.12);
+      }
+  
+      .profile-card img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #800000;
+        display: block;
+        margin: 0 auto 14px;
+      }
+  
+      .profile-card h3 {
+        font-size: 1.1rem;
+        color: #5c0000;
+        margin-bottom: 6px;
+      }
+  
+      .profile-card p {
+        color: #7a5a5a;
+        font-size: 0.95rem;
+      }
+  
+      .intro-card {
+        background: #ffffff;
+        border: 1px solid #f1e5e5;
+        border-radius: 18px;
+        padding: 22px;
+        transition: 0.3s;
+      }
+  
+      .intro-card:hover {
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.08);
+      }
+  
+      .intro-card h4 {
+        color: #5c0000;
+        font-size: 1.35rem;
+        margin-bottom: 12px;
+      }
+  
+      .intro-card p {
+        color: #4a2d2d;
+        margin-bottom: 12px;
+        font-size: 1rem;
+        text-align: justify;
+      }
+  
+      .info-chips {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+  
+      .chip {
+        background: #fff1f1;
+        color: #800000;
+        border: 1px solid #f1d2d2;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+  
+      .chip:hover {
+        background: #800000;
+        color: white;
+      }
+  
+      @media (max-width: 768px) {
+        .home-grid {
+          grid-template-columns: 1fr;
+        }
+  
+        .home-page .section-title {
+          text-align: center;
+          font-size: 1.55rem;
+        }
+  
+        .intro-card h4,
+        .intro-card p {
+          text-align: center;
+        }
+  
+        .info-chips {
+          justify-content: center;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .home-page .section-title {
+          font-size: 1.35rem;
+          margin-bottom: 18px;
+        }
+  
+        .profile-card,
+        .intro-card {
+          border-radius: 16px;
+          padding: 16px;
+        }
+  
+        .profile-card img {
+          width: 140px;
+          height: 140px;
+        }
+  
+        .intro-card h4 {
+          font-size: 1.15rem;
+        }
+  
+        .intro-card p {
+          font-size: 0.94rem;
+        }
+  
+        .chip {
+          width: 100%;
+          text-align: center;
+          border-radius: 12px;
+        }
+      }
+    </style>
+  
+    <h2 class="section-title">Home</h2>
+  
+    <div class="home-grid">
+      <div class="profile-card">
+        <img src="indiraa.jpeg" alt="Foto Profil">
+        <h3>Indira Jasmine Luay</h3>
+        <p>Mahasiswa • CV Online</p>
+      </div>
+  
+      <div class="intro-card">
+        <h4>Halo, selamat datang di CV Indira Jasmine Luay</h4>
+        <p>
+          Saya adalah mahasiswa D3 Komputerisasi Akuntansi yang tertarik pada dunia Teknologi, desain,
+          dan pembuatan website yang sederhana namun nyaman digunakan.
+        </p>
+        <p>
+          Website ini dibuat untuk memenuhi project UTS WEB Mobile.
+        </p>
+  
+        <div class="info-chips">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">jQuery</span>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      $(".chip").click(function () {
+        $(this).fadeOut(120).fadeIn(220);
+      });
+    </script>
+  </div>

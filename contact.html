@@ -1,0 +1,722 @@
+<div class="page-card contact-page">
+    <style>
+      .contact-page .section-title {
+        color: #7d0d0d;
+        font-size: 1.8rem;
+        margin-bottom: 22px;
+        font-weight: 700;
+      }
+  
+      .contact-intro {
+        color: #5a3a3a;
+        margin-bottom: 18px;
+        font-size: 1rem;
+      }
+  
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+  
+      .contact-item {
+        background: #fff8f8;
+        border: 1px solid #f0dddd;
+        border-radius: 18px;
+        padding: 18px;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+  
+      .contact-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.12);
+      }
+  
+      .contact-item h3 {
+        color: #800000;
+        font-size: 1rem;
+        margin-bottom: 6px;
+      }
+  
+      .contact-item p {
+        color: #4a2d2d;
+        font-size: 0.98rem;
+        word-break: break-word;
+      }
+  
+      .contact-note {
+        margin-top: 18px;
+        margin-bottom: 24px;
+        background: #fff1f1;
+        border: 1px solid #f3d7d7;
+        border-left: 5px solid #800000;
+        border-radius: 16px;
+        padding: 16px;
+        color: #5a3a3a;
+        font-size: 0.96rem;
+        display: none;
+      }
+  
+      .form-card,
+      .saved-card {
+        background: #fffafa;
+        border: 1px solid #f0dddd;
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: 0 6px 16px rgba(128, 0, 0, 0.06);
+        margin-bottom: 24px;
+      }
+  
+      .form-card h3,
+      .saved-header h3 {
+        color: #800000;
+        font-size: 1.2rem;
+        margin: 0;
+      }
+  
+      .saved-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+  
+      .saved-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: #c2185b;
+      }
+  
+      .saved-title .icon {
+        font-size: 1.2rem;
+      }
+  
+      .btn-delete-all {
+        border: none;
+        background: #fce4ec;
+        color: #c2185b;
+        padding: 10px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+  
+      .btn-delete-all:hover {
+        background: #f8d3df;
+      }
+  
+      .form-group {
+        margin-bottom: 16px;
+      }
+  
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #5c0000;
+      }
+  
+      .form-control {
+        width: 100%;
+        padding: 13px 14px;
+        border: 1px solid #d9bcbc;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        outline: none;
+        transition: 0.25s;
+        background: white;
+      }
+  
+      .form-control:focus {
+        border-color: #800000;
+        box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.08);
+      }
+  
+      textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+      }
+  
+      .form-control.error-input {
+        border-color: #cc0000;
+        background: #fff5f5;
+      }
+  
+      .error-text {
+        color: #cc0000;
+        font-size: 0.85rem;
+        margin-top: 6px;
+        display: none;
+      }
+  
+      .btn-group {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+      }
+  
+      .btn-submit,
+      .btn-clear {
+        border: none;
+        padding: 14px 18px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s;
+        min-height: 48px;
+        flex: 1;
+      }
+  
+      .btn-submit {
+        background: #800000;
+        color: white;
+      }
+  
+      .btn-submit:hover {
+        background: #660000;
+        transform: translateY(-1px);
+      }
+  
+      .btn-clear {
+        background: #f3e3e3;
+        color: #800000;
+        border: 1px solid #e3caca;
+      }
+  
+      .btn-clear:hover {
+        background: #ebd7d7;
+        transform: translateY(-1px);
+      }
+  
+      .btn-submit:active,
+      .btn-clear:active {
+        transform: scale(0.98);
+      }
+  
+      .success-box {
+        display: none;
+        margin-top: 16px;
+        background: #eefaf0;
+        border: 1px solid #b9e3c0;
+        border-left: 5px solid #2e8b57;
+        color: #246b43;
+        padding: 14px 16px;
+        border-radius: 12px;
+        font-size: 0.94rem;
+      }
+  
+      .draft-box {
+        display: none;
+        margin-top: 16px;
+        background: #fff8e8;
+        border: 1px solid #f0dfad;
+        border-left: 5px solid #c58b00;
+        color: #7a5700;
+        padding: 14px 16px;
+        border-radius: 12px;
+        font-size: 0.94rem;
+      }
+  
+      .empty-state {
+        background: #f7f7f7;
+        border-radius: 28px;
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #9e9e9e;
+        padding: 30px 20px;
+      }
+  
+      .empty-state .empty-icon {
+        font-size: 64px;
+        margin-bottom: 18px;
+        line-height: 1;
+      }
+  
+      .empty-state p {
+        font-size: 1rem;
+      }
+  
+      .saved-list {
+        display: grid;
+        gap: 16px;
+      }
+  
+      .message-item {
+        background: #ffffff;
+        border: 1px solid #efdede;
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 4px 12px rgba(128, 0, 0, 0.05);
+      }
+  
+      .message-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 12px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+  
+      .message-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #800000;
+      }
+  
+      .message-email {
+        font-size: 0.92rem;
+        color: #8b5e5e;
+        margin-top: 4px;
+        word-break: break-word;
+      }
+  
+      .message-date {
+        font-size: 0.82rem;
+        color: #9a7a7a;
+        background: #fff4f4;
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+  
+      .message-text {
+        color: #4a2d2d;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin: 10px 0 14px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+  
+      .message-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+  
+      .btn-delete {
+        border: none;
+        background: #fdecef;
+        color: #c2185b;
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+  
+      .btn-delete:hover {
+        background: #f8d7df;
+      }
+  
+      @media (max-width: 768px) {
+        .contact-page .section-title {
+          text-align: center;
+          font-size: 1.55rem;
+        }
+  
+        .contact-intro {
+          text-align: center;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+  
+        .contact-page .section-title {
+          font-size: 1.35rem;
+          margin-bottom: 18px;
+        }
+  
+        .contact-item,
+        .contact-note,
+        .form-card,
+        .saved-card,
+        .message-item {
+          border-radius: 16px;
+          padding: 16px;
+        }
+  
+        .contact-item p,
+        .contact-note,
+        .contact-intro,
+        .form-control,
+        .btn-submit,
+        .btn-clear,
+        .success-box,
+        .draft-box,
+        .empty-state p,
+        .message-text {
+          font-size: 0.94rem;
+        }
+  
+        .btn-group {
+          flex-direction: column;
+        }
+  
+        .saved-header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+  
+        .btn-delete-all {
+          width: 100%;
+        }
+  
+        .empty-state {
+          min-height: 220px;
+          border-radius: 20px;
+        }
+  
+        .empty-state .empty-icon {
+          font-size: 52px;
+        }
+      }
+    </style>
+  
+    <h2 class="section-title">Contact</h2>
+    <p class="contact-intro">Silakan klik kontak di bawah ini atau kirim pesan lewat form.</p>
+  
+    <div class="contact-grid">
+      <div class="contact-item">
+        <h3>Email</h3>
+        <p>indirajasmine@email.com</p>
+      </div>
+  
+      <div class="contact-item">
+        <h3>No. HP</h3>
+        <p>0899-7186-596</p>
+      </div>
+  
+      <div class="contact-item">
+        <h3>Instagram</h3>
+        <p>@indirajasmine</p>
+      </div>
+  
+      <div class="contact-item">
+        <h3>Alamat</h3>
+        <p>Bandung, Indonesia</p>
+      </div>
+    </div>
+  
+    <div class="contact-note">
+      Terima kasih sudah mengunjungi CV saya. Kamu juga bisa mengirim pesan lewat form di bawah ini.
+    </div>
+  
+    <div class="form-card">
+      <h3>Form Kontak</h3>
+  
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" class="form-control" placeholder="Masukkan nama kamu">
+          <div class="error-text" id="namaError">Nama wajib diisi.</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" class="form-control" placeholder="Masukkan email kamu">
+          <div class="error-text" id="emailError">Email wajib diisi.</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="pesan">Pesan</label>
+          <textarea id="pesan" class="form-control" placeholder="Tulis pesan kamu di sini"></textarea>
+          <div class="error-text" id="pesanError">Pesan wajib diisi minimal 10 karakter.</div>
+        </div>
+  
+        <div class="btn-group">
+          <button type="submit" class="btn-submit">Kirim Pesan</button>
+          <button type="button" class="btn-clear" id="clearForm">Reset Form</button>
+        </div>
+  
+        <div class="draft-box" id="draftMessage">
+          Draft form tersimpan otomatis di browser.
+        </div>
+  
+        <div class="success-box" id="successMessage">
+          Pesan berhasil dikirim dan disimpan.
+        </div>
+      </form>
+    </div>
+  
+    <div class="saved-card">
+      <div class="saved-header">
+        <div class="saved-title">
+          <span class="icon">👜</span>
+          <h3>Semua Pesan Tersimpan (<span id="messageCount">0</span>)</h3>
+        </div>
+        <button type="button" class="btn-delete-all" id="deleteAllMessages">Hapus Semua</button>
+      </div>
+  
+      <div id="savedMessagesContainer"></div>
+    </div>
+  
+    <script>
+      $(".contact-item").click(function () {
+        $(".contact-note").stop(true, true).slideDown(300);
+        $(this).fadeOut(120).fadeIn(220);
+      });
+  
+      const DRAFT_KEY = "cvContactDraft";
+      const MESSAGE_KEY = "cvSavedMessages";
+  
+      function validateEmail(email) {
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      }
+  
+      function showError(inputId, errorId, message) {
+        $("#" + inputId).addClass("error-input");
+        $("#" + errorId).text(message).fadeIn(150);
+      }
+  
+      function clearError(inputId, errorId) {
+        $("#" + inputId).removeClass("error-input");
+        $("#" + errorId).hide();
+      }
+  
+      function saveDraft() {
+        const draftData = {
+          nama: $("#nama").val().trim(),
+          email: $("#email").val().trim(),
+          pesan: $("#pesan").val().trim()
+        };
+  
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(draftData));
+  
+        if (draftData.nama || draftData.email || draftData.pesan) {
+          $("#draftMessage").stop(true, true).fadeIn(200);
+        } else {
+          $("#draftMessage").stop(true, true).fadeOut(200);
+        }
+      }
+  
+      function loadDraft() {
+        const savedDraft = localStorage.getItem(DRAFT_KEY);
+  
+        if (savedDraft) {
+          const draftData = JSON.parse(savedDraft);
+          $("#nama").val(draftData.nama || "");
+          $("#email").val(draftData.email || "");
+          $("#pesan").val(draftData.pesan || "");
+  
+          if (draftData.nama || draftData.email || draftData.pesan) {
+            $("#draftMessage").show();
+          }
+        }
+      }
+  
+      function clearDraft() {
+        localStorage.removeItem(DRAFT_KEY);
+        $("#draftMessage").hide();
+      }
+  
+      function getSavedMessages() {
+        const saved = localStorage.getItem(MESSAGE_KEY);
+        return saved ? JSON.parse(saved) : [];
+      }
+  
+      function setSavedMessages(messages) {
+        localStorage.setItem(MESSAGE_KEY, JSON.stringify(messages));
+      }
+  
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleString("id-ID", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+      }
+  
+      function renderSavedMessages() {
+        const messages = getSavedMessages();
+        $("#messageCount").text(messages.length);
+  
+        if (messages.length === 0) {
+          $("#savedMessagesContainer").html(`
+            <div class="empty-state">
+              <div class="empty-icon">📩</div>
+              <p>Belum ada pesan. Kirim pesan pertama kamu!</p>
+            </div>
+          `);
+          return;
+        }
+  
+        let html = '<div class="saved-list">';
+        messages.slice().reverse().forEach(function(message, index) {
+          const realIndex = messages.length - 1 - index;
+          html += `
+            <div class="message-item">
+              <div class="message-top">
+                <div>
+                  <div class="message-name">${message.nama}</div>
+                  <div class="message-email">${message.email}</div>
+                </div>
+                <div class="message-date">${formatDate(message.createdAt)}</div>
+              </div>
+  
+              <div class="message-text">${message.pesan}</div>
+  
+              <div class="message-actions">
+                <button type="button" class="btn-delete" onclick="deleteMessage(${realIndex})">
+                  Hapus
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        html += '</div>';
+  
+        $("#savedMessagesContainer").html(html);
+      }
+  
+      function deleteMessage(index) {
+        let messages = getSavedMessages();
+        messages.splice(index, 1);
+        setSavedMessages(messages);
+        renderSavedMessages();
+      }
+  
+      function addNewMessage(data) {
+        let messages = getSavedMessages();
+        messages.push({
+          nama: data.nama,
+          email: data.email,
+          pesan: data.pesan,
+          createdAt: new Date().toISOString()
+        });
+        setSavedMessages(messages);
+        renderSavedMessages();
+      }
+  
+      $("#nama").on("keyup blur input", function () {
+        let nama = $(this).val().trim();
+  
+        if (nama === "") {
+          showError("nama", "namaError", "Nama wajib diisi.");
+        } else {
+          clearError("nama", "namaError");
+        }
+  
+        saveDraft();
+      });
+  
+      $("#email").on("keyup blur input", function () {
+        let email = $(this).val().trim();
+  
+        if (email === "") {
+          showError("email", "emailError", "Email wajib diisi.");
+        } else if (!validateEmail(email)) {
+          showError("email", "emailError", "Format email tidak valid.");
+        } else {
+          clearError("email", "emailError");
+        }
+  
+        saveDraft();
+      });
+  
+      $("#pesan").on("keyup blur input", function () {
+        let pesan = $(this).val().trim();
+  
+        if (pesan === "") {
+          showError("pesan", "pesanError", "Pesan wajib diisi.");
+        } else if (pesan.length < 10) {
+          showError("pesan", "pesanError", "Pesan minimal 10 karakter.");
+        } else {
+          clearError("pesan", "pesanError");
+        }
+  
+        saveDraft();
+      });
+  
+      $("#contactForm").submit(function (e) {
+        e.preventDefault();
+  
+        let nama = $("#nama").val().trim();
+        let email = $("#email").val().trim();
+        let pesan = $("#pesan").val().trim();
+  
+        let isValid = true;
+        $("#successMessage").hide();
+  
+        if (nama === "") {
+          showError("nama", "namaError", "Nama wajib diisi.");
+          isValid = false;
+        } else {
+          clearError("nama", "namaError");
+        }
+  
+        if (email === "") {
+          showError("email", "emailError", "Email wajib diisi.");
+          isValid = false;
+        } else if (!validateEmail(email)) {
+          showError("email", "emailError", "Format email tidak valid.");
+          isValid = false;
+        } else {
+          clearError("email", "emailError");
+        }
+  
+        if (pesan === "") {
+          showError("pesan", "pesanError", "Pesan wajib diisi.");
+          isValid = false;
+        } else if (pesan.length < 10) {
+          showError("pesan", "pesanError", "Pesan minimal 10 karakter.");
+          isValid = false;
+        } else {
+          clearError("pesan", "pesanError");
+        }
+  
+        if (isValid) {
+          addNewMessage({ nama, email, pesan });
+  
+          $("#successMessage").hide().fadeIn(300);
+          $("#contactForm")[0].reset();
+          $(".form-control").removeClass("error-input");
+          $(".error-text").hide();
+          clearDraft();
+  
+          $('html, body').animate({
+            scrollTop: $(".saved-card").offset().top - 90
+          }, 500);
+        } else {
+          saveDraft();
+        }
+      });
+  
+      $("#clearForm").click(function () {
+        $("#contactForm")[0].reset();
+        $(".form-control").removeClass("error-input");
+        $(".error-text").hide();
+        $("#successMessage").hide();
+        clearDraft();
+      });
+  
+      $("#deleteAllMessages").click(function () {
+        if (confirm("Yakin ingin menghapus semua pesan?")) {
+          localStorage.removeItem(MESSAGE_KEY);
+          renderSavedMessages();
+        }
+      });
+  
+      loadDraft();
+      renderSavedMessages();
+    </script>
+  </div>

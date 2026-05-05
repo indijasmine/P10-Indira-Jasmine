@@ -1,0 +1,304 @@
+<div class="page-card github-page">
+    <style>
+      .github-page .section-title {
+        color: #800000;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+  
+      .github-page .section-subtitle {
+        color: #7a5a5a;
+        margin-bottom: 22px;
+        font-size: 1rem;
+      }
+  
+      .github-loading,
+      .github-error {
+        display: none;
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 18px;
+        margin-bottom: 20px;
+      }
+  
+      .github-loading {
+        background: #fff6f6;
+        color: #800000;
+        border: 1px solid #f0dede;
+        font-weight: 600;
+      }
+  
+      .github-error {
+        background: #fff1f1;
+        color: #b00020;
+        border: 1px solid #f1caca;
+        font-weight: 600;
+      }
+  
+      .github-profile {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+        margin-bottom: 24px;
+        align-items: start;
+      }
+  
+      .github-user-card {
+        background: #fff8f8;
+        border: 1px solid #f0dddd;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        transition: 0.3s;
+      }
+  
+      .github-user-card:hover,
+      .github-stats-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.10);
+      }
+  
+      .github-user-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #800000;
+        margin-bottom: 14px;
+      }
+  
+      .github-user-card h3 {
+        color: #800000;
+        font-size: 1.25rem;
+        margin-bottom: 4px;
+      }
+  
+      .github-user-card p {
+        color: #7a5a5a;
+        margin-bottom: 14px;
+      }
+  
+      .github-user-card a {
+        display: inline-block;
+        text-decoration: none;
+        background: #800000;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+  
+      .github-user-card a:hover {
+        background: #660000;
+      }
+  
+      .github-stats-card {
+        background: #ffffff;
+        border: 1px solid #f1e5e5;
+        border-radius: 20px;
+        padding: 22px;
+        transition: 0.3s;
+      }
+  
+      .github-stats-card h3 {
+        color: #5c0000;
+        margin-bottom: 16px;
+        font-size: 1.2rem;
+      }
+  
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+  
+      .stat-box {
+        background: #fff6f6;
+        border: 1px solid #f0dede;
+        border-radius: 16px;
+        padding: 18px;
+        text-align: center;
+      }
+  
+      .stat-box h4 {
+        font-size: 1.5rem;
+        color: #6c1919;
+        margin-bottom: 6px;
+      }
+  
+      .stat-box p {
+        color: #7a5a5a;
+        font-size: 0.95rem;
+      }
+  
+      .repo-section h3 {
+        color: #5c0000;
+        margin-bottom: 16px;
+        font-size: 1.2rem;
+      }
+  
+      .repo-list {
+        display: grid;
+        gap: 16px;
+      }
+  
+      .repo-card {
+        display: block;
+        text-decoration: none;
+        background: #fffafa;
+        border: 1px solid #efdede;
+        border-radius: 18px;
+        padding: 18px;
+        transition: 0.3s;
+      }
+  
+      .repo-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.08);
+      }
+  
+      .repo-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+  
+      .repo-top h4 {
+        color: #800000;
+        font-size: 1.05rem;
+      }
+  
+      .repo-top span {
+        background: #fff1f1;
+        color: #800000;
+        border: 1px solid #f0d4d4;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+  
+      .repo-card p {
+        color: #5a3a3a;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+  
+      .repo-meta {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        color: #7a5a5a;
+        font-size: 0.92rem;
+        font-weight: 600;
+      }
+  
+      .repo-empty {
+        background: #f7f7f7;
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        color: #9a9a9a;
+        border: 1px solid #ececec;
+      }
+  
+      #githubContent {
+        display: none;
+      }
+  
+      @media (max-width: 768px) {
+        .github-profile {
+          grid-template-columns: 1fr;
+        }
+  
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+  
+        .github-page .section-title,
+        .github-page .section-subtitle,
+        .github-stats-card h3,
+        .repo-section h3 {
+          text-align: center;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .github-page .section-title {
+          font-size: 1.35rem;
+        }
+  
+        .github-page .section-subtitle,
+        .repo-card p,
+        .repo-meta,
+        .github-user-card p {
+          font-size: 0.94rem;
+        }
+  
+        .github-user-card,
+        .github-stats-card,
+        .repo-card {
+          border-radius: 16px;
+          padding: 16px;
+        }
+  
+        .github-user-card img {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    </style>
+  
+    <h2 class="section-title">GitHub Info</h2>
+    <p class="section-subtitle">
+      Data profil GitHub ditampilkan secara real-time menggunakan GitHub API.
+    </p>
+  
+    <div class="github-loading" id="githubLoading">
+      Memuat data GitHub...
+    </div>
+  
+    <div class="github-error" id="githubError">
+      Gagal memuat data GitHub. Periksa username atau koneksi internet kamu.
+    </div>
+  
+    <div id="githubContent">
+      <div class="github-profile">
+        <div class="github-user-card">
+          <img id="githubAvatar" src="" alt="GitHub Avatar">
+          <h3 id="githubUsername">-</h3>
+          <p id="githubName">-</p>
+          <a id="githubProfileLink" href="#" target="_blank">Lihat Profil GitHub</a>
+        </div>
+  
+        <div class="github-stats-card">
+          <h3>Statistik GitHub</h3>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <h4 id="githubRepoCount">0</h4>
+              <p>Repository</p>
+            </div>
+            <div class="stat-box">
+              <h4 id="githubFollowers">0</h4>
+              <p>Followers</p>
+            </div>
+            <div class="stat-box">
+              <h4 id="githubFollowing">0</h4>
+              <p>Following</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="repo-section">
+        <h3>Daftar Repository</h3>
+        <div class="repo-list" id="repoList"></div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,155 @@
+<div class="page-card">
+    <style>
+      .section-head h2 {
+        color: #981414;
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+      }
+  
+      .section-head p {
+        color: #7b5d5d;
+        margin-bottom: 24px;
+      }
+  
+      .exp-list {
+        display: grid;
+        gap: 18px;
+      }
+  
+      .exp-card {
+        background: #fff9f9;
+        border: 1px solid #efdfdf;
+        border-radius: 18px;
+        overflow: hidden;
+      }
+  
+      .exp-top {
+        padding: 18px 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        background: #fff3f3;
+      }
+  
+      .exp-top h3 {
+        color: #800000;
+        font-size: 1.05rem;
+      }
+  
+      .toggle-btn {
+        border: none;
+        background: #800000;
+        color: white;
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+  
+      .toggle-content {
+        display: none;
+        padding: 18px 20px 20px;
+        color: #4b2d2d;
+      }
+  
+      .meta {
+        color: #9c6f6f;
+        font-size: 0.92rem;
+        font-weight: 600;
+        margin-top: 4px;
+        margin-bottom: 10px;
+      }
+  
+      .toggle-content ul {
+        padding-left: 18px;
+      }
+  
+      .toggle-content li {
+        margin-bottom: 8px;
+      }
+  
+      @media (max-width: 768px) {
+        .section-head h2,
+        .section-head p {
+          text-align: center;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .section-head h2 {
+          font-size: 1.35rem;
+        }
+  
+        .exp-card {
+          border-radius: 16px;
+        }
+  
+        .exp-top,
+        .toggle-content {
+          padding: 16px;
+        }
+  
+        .toggle-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  
+    <div class="section-head">
+      <h2>Experiences</h2>
+      <p>Pengalaman organisasi, proyek, dan pengembangan skill yang pernah saya jalani.</p>
+    </div>
+  
+    <div class="exp-list">
+      <div class="exp-card toggle-card">
+        <div class="exp-top">
+          <div>
+            <h3>Proyek Web CV SPA</h3>
+            <div class="meta">2026 • Personal Project</div>
+          </div>
+          <button class="toggle-btn">Lihat Detail</button>
+        </div>
+        <div class="toggle-content">
+          <ul>
+            <li>Membangun web CV berbasis SPA dengan jQuery AJAX.</li>
+            <li>Menerapkan UI responsif untuk desktop dan mobile.</li>
+            <li>Menambahkan validasi form, localStorage, dan integrasi GitHub API.</li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="exp-card toggle-card">
+        <div class="exp-top">
+          <div>
+            <h3>Organisasi / Kepanitiaan</h3>
+            <div class="meta">2024 - 2025 • Campus Activity</div>
+          </div>
+          <button class="toggle-btn">Lihat Detail</button>
+        </div>
+        <div class="toggle-content">
+          <ul>
+            <li>Berpartisipasi dalam koordinasi acara dan komunikasi tim.</li>
+            <li>Mengembangkan kemampuan kerja sama, tanggung jawab, dan manajemen waktu.</li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="exp-card toggle-card">
+        <div class="exp-top">
+          <div>
+            <h3>Latihan UI/UX dan Front-End</h3>
+            <div class="meta">2025 - Sekarang • Self Learning</div>
+          </div>
+          <button class="toggle-btn">Lihat Detail</button>
+        </div>
+        <div class="toggle-content">
+          <ul>
+            <li>Membuat tampilan card layout yang modern dan touch-friendly.</li>
+            <li>Mempelajari desain antarmuka, spacing, hierarchy, dan konsistensi visual.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

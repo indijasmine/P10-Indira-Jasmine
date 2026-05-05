@@ -1,0 +1,173 @@
+<div class="page-card about-page">
+    <style>
+      .about-page .section-title {
+        color: #7b0e0e;
+        font-size: 1.8rem;
+        margin-bottom: 22px;
+        font-weight: 700;
+      }
+  
+      .about-layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+  
+      .about-photo {
+        background: #fff8f8;
+        border: 1px solid #f0dddd;
+        border-radius: 18px;
+        padding: 16px;
+        text-align: center;
+        transition: 0.3s;
+      }
+  
+      .about-photo:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.12);
+      }
+  
+      .about-photo img {
+        width: 170px;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 4px solid #800000;
+        display: block;
+        margin: 0 auto;
+      }
+  
+      .about-content {
+        display: grid;
+        gap: 16px;
+      }
+  
+      .about-box {
+        background: #ffffff;
+        border: 1px solid #f1e5e5;
+        border-radius: 18px;
+        padding: 20px;
+        transition: 0.3s;
+      }
+  
+      .about-box:hover {
+        box-shadow: 0 8px 20px rgba(128, 0, 0, 0.08);
+      }
+  
+      .about-box h3 {
+        color: #5c0000;
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+      }
+  
+      .about-box p {
+        font-size: 1rem;
+        color: #4a2d2d;
+        text-align: justify;
+      }
+  
+      .detail-list {
+        display: grid;
+        gap: 10px;
+      }
+  
+      .detail-item {
+        background: #fff6f6;
+        border: 1px solid #f1dfdf;
+        border-radius: 14px;
+        padding: 12px 14px;
+        font-size: 0.97rem;
+        color: #4a2d2d;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+  
+      .detail-item:hover {
+        background: #800000;
+        color: white;
+      }
+  
+      .detail-item strong {
+        color: #800000;
+      }
+  
+      .detail-item:hover strong {
+        color: white;
+      }
+  
+      @media (max-width: 768px) {
+        .about-layout {
+          grid-template-columns: 1fr;
+        }
+  
+        .about-page .section-title {
+          text-align: center;
+          font-size: 1.55rem;
+        }
+  
+        .about-box h3,
+        .about-box p {
+          text-align: center;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .about-page .section-title {
+          font-size: 1.35rem;
+          margin-bottom: 18px;
+        }
+  
+        .about-photo,
+        .about-box {
+          border-radius: 16px;
+          padding: 16px;
+        }
+  
+        .about-photo img {
+          width: 140px;
+          height: 140px;
+        }
+  
+        .about-box p,
+        .detail-item {
+          font-size: 0.94rem;
+        }
+      }
+    </style>
+  
+    <h2 class="section-title">About</h2>
+  
+    <div class="about-layout">
+      <div class="about-photo">
+        <img src="indiraa.jpeg" alt="Foto Profil">
+      </div>
+  
+      <div class="about-content">
+        <div class="about-box">
+          <h3>Tentang Saya</h3>
+          <p>
+            Nama saya <strong>Indira Jasmine Luay</strong>. Saya memiliki minat pada web design,
+            front-end development, dan pembuatan tampilan website yang rapi, responsif,
+            serta mudah digunakan di berbagai perangkat.
+          </p>
+        </div>
+  
+        <div class="about-box">
+          <h3>Data Diri</h3>
+          <div class="detail-list">
+            <div class="detail-item"><strong>Nama:</strong> Indira Jasmine Luay</div>
+            <div class="detail-item"><strong>Pendidikan:</strong> Mahasiswa D3 Komputerisasi Akuntansi</div>
+            <div class="detail-item"><strong>Skill:</strong> HTML, CSS, JavaScript, jQuery</div>
+            <div class="detail-item"><strong>Hobi:</strong> Membaca, Coding, desain, dan belajar hal baru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      $(".detail-item").click(function () {
+        $(this).slideUp(120).slideDown(220);
+      });
+    </script>
+  </div>
